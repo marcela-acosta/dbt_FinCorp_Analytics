@@ -1,4 +1,4 @@
-
-target/
-dbt_packages/
-logs/
+# Se decide comentar para que todos los archivos puedan ser subidos a github a efectos académicos.
+# target/
+# dbt_packages/
+# logs/
