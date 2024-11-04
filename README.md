@@ -14,13 +14,13 @@ El escenario está basado en una compañía ficticia llamada **"FinCorp Analytic
 
 ## Configuración Inicial
 
-Paso 1: Generar un schema en la database postgres con el nombre "raw_data".
-Paso 2: Botón derecho sobre el schema "raw_data", import data y seleccionar "import from csv".
-Paso 3: Seleccionar los 3 csv adjuntos para cargarlos a la base y dar click en siguiente.
-Paso 4: Seleccionar account.csv y dar click en "configure".
-Paso 5: Cambiar el tipo de dato de las columnas "opening_date" y "balance" a "date" e "integer", luego aceptar.
-Paso 6: Aplicar lo mismo para transactions.csv. En este caso para las columnas "transaction_date" y "transaction_amount".
-Paso 7: Siguiente y continuar para empezar a generar las tablas.
+### Paso 1: Generar un schema en la database postgres con el nombre "raw_data".
+### Paso 2: Botón derecho sobre el schema "raw_data", import data y seleccionar "import from csv".
+### Paso 3: Seleccionar los 3 csv adjuntos para cargarlos a la base y dar click en siguiente.
+### Paso 4: Seleccionar account.csv y dar click en "configure".
+### Paso 5: Cambiar el tipo de dato de las columnas "opening_date" y "balance" a "date" e "integer", luego aceptar.
+### Paso 6: Aplicar lo mismo para transactions.csv. En este caso para las columnas "transaction_date" y "transaction_amount".
+### Paso 7: Siguiente y continuar para empezar a generar las tablas.
 
 Tener en cuenta estos pasos previo a verificar los siguientes puntos del proyecto.
 Este desarrollo requiere que las fechas y montos estén configurados correctamente.
