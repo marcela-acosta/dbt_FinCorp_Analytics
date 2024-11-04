@@ -1,0 +1,7 @@
+version: 2
+
+macros:
+  - name: test_balance_negativo
+    description: Comprueba que el balance total sea Mayor o igual a 0
+  - name: balance_acumulado 
+    description: Suma el valor de una columna numérica (Utilizado para calcular el balance diario)

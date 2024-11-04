@@ -1,0 +1,25 @@
+dev:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: localhost
+      user: postgres
+      password: diegocurso
+      port: 5432
+      dbname: postgres
+      schema: dev_proyecto
+      threads: 1
+
+prod:
+  target: prod
+  outputs:
+    prod:
+      type: postgres
+      host: localhost
+      user: postgres
+      password: diegocurso
+      port: 5432
+      dbname: postgres
+      schema: prod_proyecto
+      threads: 1

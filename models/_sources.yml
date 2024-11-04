@@ -1,0 +1,65 @@
+version: 2
+
+sources:
+  - name: raw_data
+    database: postgres  
+    schema: raw_data 
+    tables:
+      - name: account_types
+        columns:
+          - name: account_type_id
+            data_type: int
+            descripcion: Identificador de tipo de cuenta
+            test:
+              -unique
+              -not_null
+          - name: account_type_name
+            descripcion: Nombre del tipo de cuenta
+            test:
+              -not_null
+      - name: accounts
+        columns:
+          - name: account_id
+            descripcion: Identificador de la cuenta
+            test:
+              -unique
+              -not_null
+          - name: account_name
+            descripcion: Nombre de la cuenta
+            test:
+              -not_null
+          - name: account_type
+            descripcion: Tipo de cuenta
+            test:
+              -not_null
+          - name: opening_date
+            descripcion: Fecha de apertura de la cuenta
+            test:
+              -not_null
+          - name: balance
+            descripcion: Balance de la cuenta
+            test:
+              -not_null
+      - name: transactions
+        columns:
+          - name: transaction_id
+            descripcion: Identificador de la transaccion
+            test:
+              -unique
+              -not_null
+          - name: account_id
+            descripcion: Identificador de la cuenta
+            test:
+              -not_null
+          - name: transaction_date
+            descripcion: Fecha de la transacccion
+            test:
+              -not_null
+          - name: transaction_ammount
+            descripcion: Monto de la transaccion
+            test:
+              -not_null
+          - name: transaction_type
+            descripcion: Tipo de Transaccion
+            test:
+              -not_null

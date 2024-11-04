@@ -1,0 +1,101 @@
+models:
+  - name: dim_accounts
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: account_id
+        data_type: int
+        description: Identificador de la Cuenta
+        data_tests: 
+          - unique
+          - not_null
+          - dbt_expectations.expect_column_distinct_count_to_be_greater_than:
+              value: 1 
+        constraints:
+          - type: primary_key
+      - name: account_name
+        data_type: string
+        description: Nombre de la Cuenta
+      - name: account_type
+        data_type: string
+        description: Tipo de Cuenta
+      - name: opening_date
+        data_type: date
+        description: Fecha de apertura de la cuenta
+      - name: balance
+        data_type: int
+        description: Balance de la Cuenta
+        data_tests:
+          - balance_negativo
+      - name: account_type_id
+        data_type: int
+        description: Identificador del tipo de la Cuenta
+      - name: hash_column
+        data_type: string
+        description: Hash único generado con dbt utils
+
+  - name: fact_transactions
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: transaction_id
+        data_type: int
+        description: Identificador de la transacción
+        data_tests: 
+          - unique
+          - not_null
+          - dbt_expectations.expect_column_distinct_count_to_be_greater_than:
+              value: 1 
+        constraints:
+          - type: primary_key
+      - name: account_id 
+        data_type: int
+        description: Identificador de la cuenta
+        data_tests: 
+          - not_null
+          - relationships:
+              to: ref('dim_accounts')
+              field: account_id
+              config:
+                severity: warn
+      - name: transaction_date
+        data_type: date
+        description: Fecha de la Transacción
+      - name: transaction_amount
+        data_type: int
+        description: Monto de la transacción
+      - name: transaction_type
+        data_type: string
+        description: Tipo de transacción
+      - name: balance
+        data_type: int
+        description: Balance de la Cuenta
+      - name: hash_column
+        data_type: string
+        description: Hash único generado con dbt utils
+
+  - name: agg_daily_balance
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: transaction_date
+        data_type: date
+        description: Fecha de la Transacción
+        data_tests: 
+          - not_null
+          - dbt_expectations.expect_column_distinct_count_to_be_greater_than:
+              value: 1 
+      - name: account_id
+        data_type: int
+        description: Identificador de la Cuenta
+      - name: transaction_amount
+        data_type: bigint
+        description: Cantidad sumarizada de la transacción por cuenta y dia
+      - name: hash_column
+        data_type: string
+        description: Hash único generado con dbt utils
+  
+ 
