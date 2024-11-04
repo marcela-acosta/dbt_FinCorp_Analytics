@@ -12,7 +12,7 @@ El escenario está basado en una compañía ficticia llamada **"FinCorp Analytic
 - Leandro García
 - Diego Teijeiro
 
-###### Objetivos del Proyecto
+## Objetivos del Proyecto
 
 # Configuración Inicial
 
@@ -153,4 +153,3 @@ la tabla `fact_transactions` existen. Cuando encontramos un caso donde no exista
 ## Parte 8:
 
 - Documentado
-# dbt_FinCorp_Analytics
