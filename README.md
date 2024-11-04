@@ -1,20 +1,20 @@
 # Proyecto Final: Transformación de Datos con dbt
 
-## Introducción
-
-Este proyecto final del curso **"Transformación de Datos con dbt"** te permitirá aplicar los conocimientos adquiridos durante el curso. Trabajarás en la construcción y optimización de un flujo de transformación de datos para la simulación de un sistema de análisis financiero.
-
-El escenario está basado en una compañía ficticia llamada **"FinCorp Analytics"**, que maneja transacciones bancarias y necesita un sistema eficiente para gestionar y analizar estas transacciones, generando reportes detallados de balances, movimientos por cuenta, y cambios en las cuentas a lo largo del tiempo.
-
 ## Integrantes del grupo
 
 - Marcela Acosta
 - Leandro García
 - Diego Teijeiro
 
+## Introducción
+
+Este proyecto final del curso **"Transformación de Datos con dbt"** te permitirá aplicar los conocimientos adquiridos durante el curso. Trabajarás en la construcción y optimización de un flujo de transformación de datos para la simulación de un sistema de análisis financiero.
+
+El escenario está basado en una compañía ficticia llamada **"FinCorp Analytics"**, que maneja transacciones bancarias y necesita un sistema eficiente para gestionar y analizar estas transacciones, generando reportes detallados de balances, movimientos por cuenta, y cambios en las cuentas a lo largo del tiempo.
+
 ## Objetivos del Proyecto
 
-# Configuración Inicial
+## Configuración Inicial
 
 Paso 1: Generar un schema en la database postgres con el nombre "raw_data".
 Paso 2: Botón derecho sobre el schema "raw_data", import data y seleccionar "import from csv".
