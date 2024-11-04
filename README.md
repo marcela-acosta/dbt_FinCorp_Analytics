@@ -25,14 +25,14 @@ El escenario está basado en una compañía ficticia llamada **"FinCorp Analytic
 Tener en cuenta estos pasos previo a verificar los siguientes puntos del proyecto.
 Este desarrollo requiere que las fechas y montos estén configurados correctamente.
 
-## Parte 1: **Carga y Gestión de Fuentes de Datos**
+## 1. **Carga y Gestión de Fuentes de Datos**
    - Definir las fuentes de datos (`sources`) de las tablas crudas en dbt que contienen información de transacciones y cuentas.
    - Estas tablas deben estar correctamente definidas en el archivo `schema.yml` con las descripciones correspondientes para cada columna.
 
 Creamos el archivo `_sources.yml` para definir las fuentes necesarias para el proyecto.
 En este mismo archivo incorporamos las descripciones y tests correspondientes solicitadas en el punto 2.
 
-## Parte 2: **Construcción de Modelos**
+## 2. **Construcción de Modelos**
    - Crear los modelos que gestionen y transformen los datos crudos en tablas analíticas:
      - `dim_accounts`: Tabla dimensional con información de las cuentas, incluído el tipo de cuenta. Materialización como _tabla_.
      - `fact_transactions`: Fact table con los detalles de las transacciones, incluyendo el balance acumulado por cuenta (de la tabla accounts) y transacción. Materialización como _tabla_.
@@ -52,7 +52,7 @@ En el Mart, generamos 3 modelos según los criterios definidos.
   Unique key = Definimos la clave de la tabla.
   On Schema Change = En caso de que se incorporen nuevas columnas, estas se agregan a la tabla sin dar error y cortar el proceso. Para datos previamente cargados, el valor de la nueva columna será null.
 
-## Parte 3: **Snapshots**
+## 3. **Snapshots**
    - Crear un modelo de snapshot `snapshot_accounts` para rastrear cambios en el estado de las cuentas (cuenta, balance y tipo de cuenta) en el tiempo.
    - Definir y ejecutar el snapshot para almacenar los cambios históricos.
 
@@ -66,7 +66,7 @@ Aclaración: La tabla del snapshot no se utiliza para los modelos desarrollados 
 
 Se hicieron pruebas para comprobar el funcionamiento modificando registros en el source y comprobando los cambios al regenerar el snapshot.
 
-## Parte 4: **Validación y Pruebas de Datos**
+## 4. **Validación y Pruebas de Datos**
    - Añadir pruebas para asegurar la calidad de los datos:
      - Pruebas de unicidad y no nulos en los campos `account_id` y `transaction_id`.
      - Pruebas personalizadas para asegurar que los balances no sean negativos.
@@ -84,7 +84,7 @@ data_tests:
 
 Esto es para que al momento de aplicar los test si alguno falla, se almacene el resultado (la linea que falló) en una tabla para su posterior revisión.
 
-## Parte 5: **Uso de Macros y Paquetes**
+## 5. **Uso de Macros y Paquetes**
    - Crear una macro reutilizable para calcular balances acumulados y aplicar esta macro en los modelos. ##Listo
    - Usar un paquete externo de dbt para generar un hash en las tablas del data mart.
 
@@ -92,7 +92,7 @@ Generamos un macro de nombre `balance_diario`. El mismo recibe una columna y se 
 para calcular el balance diario por cuenta.
 Utilizando el paquete externo `dbt_utils` generamos un hash en cada tabla del mart utilizando `dbt_utils.generate_surrogate_key`. La columna con hash se llama `hash_column`
 
-## Parte 6: **Definición de Data Contracts**
+## 6. **Definición de Data Contracts**
    - Definir las condiciones de un data contract que asegure la calidad y el formato de los datos que se envían desde las fuentes hasta los modelos analíticos.
    - Esto incluye:
    - Los tipos de datos de los modelos del mart
@@ -123,7 +123,7 @@ Compartimos enlace a github donde se comenta este problema que detectamos:
 Para resolver este punto decidimos aplicar un `data_test` de tipo `relationships` configurado como `Warning`. Con este test verificamos si los `account_id` en
 la tabla `fact_transactions` existen. Cuando encontramos un caso donde no exista, estos registros se cargan en esquema dedicado que almacena los resultados de los tests aplicados.
 
-## Parte 7: **Perfiles y Targets**
+## 7. **Perfiles y Targets**
    - Configurar correctamente los archivos `profiles.yml` y `dbt_project.yml` para definir targets y perfiles según el entorno (dev/prod).
    - Ejecutar los modelos en diferentes entornos y verificar los resultados.
 
